@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gata Calicó - Mitsubishi</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="patitas-contenedor">
+        <div class="patita-decoracion" style="top: 10%; left: 5%;">🐾</div>
+        <div class="patita-decoracion" style="top: 80%; left: 90%; animation-delay: 2s;">🐾</div>
+        <div class="patita-decoracion" style="top: 50%; left: 45%; animation-delay: 4s;">🐾</div>
+        <div class="patita-decoracion" style="top: 30%; left: 70%; animation-delay: 1s;">🐾</div>
+    </div>
+
+    <div class="main-content" id="mainContent">
+        <div class="columna-gata">
+            <h1 class="titulo-gata">MITSUBISHI</h1>
+            <p class="frase-gata">
+                "¡Miau! Toca mi foto si quieres saber más sobre mis cosas favoritas."
+            </p>
+
+            <img 
+                src="https://i.pinimg.com/736x/16/55/f7/1655f75dbe558702f4e940682bb7fa3a.jpg" 
+                alt="Foto de una gata calicó, Mitsubishi" 
+                class="gata-img" 
+                id="gataImg"
+            >
+
+            <!-- BOTÓN DE DONACIONES (AGREGADO) -->
+            <a href="https://link.mercadopago.com.ar/mitsucomewhiskas"
+               target="_blank" 
+               class="boton-donaciones">
+                🌟 Me ayudas con una donacion
+            </a>
+
+        </div>
+
+        <div class="columna-info detalles-gata-oculto" id="infoColumna">
+
+            <button class="boton-principal-info" id="botonPrincipalInfo">
+                Información sobre Mitsubishi
+            </button>
+
+            <div style="margin-bottom: 20px;">
+                <iframe width="100%" height="150" src="https://www.youtube.com/embed/jVUZH1bqaUw?si=LM5tvFXs6Fl2LLdh" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+
+            <div class="botones-info">
+                <button class="boton-tab activo" data-tab="personalidad">
+                    <span class="icono-boton">✨</span>
+                    Personalidad
+                </button>
+                <button class="boton-tab" data-tab="comida">
+                    <span class="icono-boton">🐟</span>
+                    Comida Favorita
+                </button>
+                <button class="boton-tab" data-tab="datos">
+                    <span class="icono-boton">💡</span>
+                    Datos Curiosos
+                </button>
+            </div>
+
+            <div class="pestañas-contenedor">
+                <div class="pestaña activa" data-tab-content="personalidad">
+                    <h2 class="resaltado-amarillo">Personalidad</h2>
+                    <p>Soy una gata muy independiente, pero también soy la más dulce y me encanta dormir pegada a mis humanos. Mi pasatiempo favorito es estar con mama.</p>
+                </div>
+
+                <div class="pestaña" data-tab-content="comida">
+                    <h2 class="resaltado-amarillo">Comida Favorita</h2>
+                    <p>Mi comida favorita son las latitas de atun</p>
+                </div>
+
+                <div class="pestaña" data-tab-content="datos">
+                    <h2 class="resaltado-amarillo">Datos Curiosos</h2>
+                    <ul>
+                        <li>Tengo 13 años.</li>
+                        <li>Nací en verano.</li>
+                        <li>Me gusta la hora de la merienda.</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

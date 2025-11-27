@@ -1,0 +1,409 @@
+/* --- 1. Tipografía y Estilos Base --- */
+/* ¡IMPORTANTE! Si deseas otras fuentes, reemplaza esta línea por tu @import de Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Pacifico&display=swap');
+
+body {
+    background-color: #000000;
+    color: #ffffff;
+    font-family: 'Montserrat', sans-serif; /* Fuente principal aplicada */
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    overflow-x: hidden; 
+}
+
+/* ======================================================= */
+/* === ANIMACIÓN DECORATIVA DE PATITAS === */
+/* ======================================================= */
+
+@keyframes flotar {
+    0% { transform: translate(0, 0) rotate(0deg); opacity: 0.3; } 
+    50% { transform: translate(5px, -15px) rotate(5deg); opacity: 0.6; } 
+    100% { transform: translate(0, 0) rotate(0deg); opacity: 0.3; } 
+}
+
+.patitas-contenedor {
+    position: fixed; 
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none; 
+    z-index: -1; 
+}
+
+.patita-decoracion {
+    position: absolute;
+    color: #ffff00; 
+    font-size: 4em;
+    filter: blur(0.5px); 
+    animation: flotar 8s ease-in-out infinite alternate;
+}
+
+/* --- 2. Contenido Principal y Animación de Desplazamiento --- */
+.main-content {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center; 
+    width: 100%;
+    max-width: 1000px;
+    padding: 20px;
+    box-sizing: border-box;
+    transition: justify-content 0.6s ease-out;
+}
+
+.main-content.activo {
+    justify-content: flex-start; 
+}
+
+/* --- 3. Estilos de Texto y Gata --- */
+.titulo-gata {
+    font-weight: 700;
+    font-size: 2.2em;
+    margin-bottom: 5px;
+    color: #ffff00;
+    text-shadow: 0 0 8px rgba(255, 255, 0, 0.4); 
+    font-family: 'Pacifico', cursive; /* Fuente del título si está cargada */
+}
+
+.frase-gata {
+    font-size: 1.4em;
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+.resaltado-amarillo {
+    color: #ffff00;
+    font-weight: bold;
+}
+
+.columna-gata {
+    text-align: center;
+    width: 350px; 
+    flex-shrink: 0;
+}
+
+.gata-img {
+    display: block;
+    max-width: 350px;
+    width: 100%;
+    height: 350px; 
+    border-radius: 50%;
+    object-fit: cover; 
+    object-position: center;
+    border: 4px solid #ffff00;
+    box-shadow: 0 0 15px rgba(255, 255, 0, 0.4), 0 8px 15px rgba(0, 0, 0, 0.5);
+    margin: 15px auto;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out, box-shadow 0.1s;
+}
+
+.gata-img:hover {
+    transform: scale(1.03);
+}
+
+.gata-img:active {
+    transform: scale(0.98); 
+    box-shadow: 0 0 10px rgba(255, 255, 0, 0.8), 0 4px 10px rgba(0, 0, 0, 0.8);
+}
+
+
+/* --- 4. Columna de Información y Botones --- */
+.columna-info {
+    opacity: 0; 
+    width: 0; 
+    max-width: 500px;
+    padding-left: 0; 
+    text-align: left;
+    display: flex; 
+    flex-direction: column;
+    justify-content: flex-start;
+    transition: opacity 0.6s ease-out, width 0.6s ease-out, padding-left 0.6s ease-out;
+}
+
+.main-content.activo .columna-info {
+    opacity: 1; 
+    width: 100%; 
+    padding-left: 40px; 
+}
+
+/* === BOTÓN PRINCIPAL CON IMAGEN DE FONDO === */
+.boton-principal-info {
+    padding: 15px 30px;
+    border: 3px solid #ffff00;
+    /* --- ESTILOS DE IMAGEN DE FONDO --- */
+    background-image: url('https://www.shutterstock.com/image-vector/lazy-calico-cat-sleeping-cartoon-260nw-2380285063.jpg');
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    background-color: #333; /* Fondo de respaldo */
+    /* --- FIN DE ESTILOS DE IMAGEN --- */
+    
+    color: #ffff00; 
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.7); /* Sombra para legibilidad */
+    cursor: pointer;
+    font-size: 1.2em;
+    font-weight: bold;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    transition: all 0.3s;
+}
+
+.boton-principal-info:hover {
+    background-color: rgba(0, 0, 0, 0.4); 
+    background-blend-mode: multiply; /* Oscurece la imagen para resaltar el texto */
+    transform: translateY(-2px); 
+    color: #ffd700; 
+    border-color: #ffd700; 
+}
+.boton-principal-info:active {
+    transform: scale(0.98); 
+    background-color: rgba(0, 0, 0, 0.6); 
+}
+
+.detalles-gata-oculto {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: opacity 0.4s ease-in, max-height 0.4s ease-in; 
+}
+
+.detalles-gata-visible {
+    opacity: 1;
+    max-height: 500px; 
+}
+
+
+/* ======================================================= */
+/* === ESTILOS DE BOTONES DE HUELLA (TEXTO BLANCO Y GRANDE) === */
+/* ======================================================= */
+
+@keyframes huella-press {
+    0% { transform: scale(1); box-shadow: 0 4px #e0e000; }
+    100% { transform: scale(0.95); box-shadow: 0 2px #e0e000; }
+}
+
+.botones-info {
+    margin: 20px 0;
+    display: flex;
+    justify-content: flex-start;
+    gap: 20px; 
+}
+
+.boton-tab {
+    position: relative;
+    
+    width: 90px; 
+    height: 70px; 
+    padding: 5px;
+    border: none;
+    border-radius: 40% 40% 60% 60% / 50% 50% 80% 80%; 
+
+    /* --- ESTILOS DE IMAGEN DE FONDO DE TEXTURA --- */
+    background-image: url('https://thumbs.dreamstime.com/b/textura-de-fondo-piel-gato-calico-bonitos-colores-negros-naranja-y-blanco-foto-macro-suave-furtiva-183216841.jpg');
+    background-size: cover; 
+    background-position: center; 
+    background-color: #ffffff; /* Fondo Blanco */
+    background-blend-mode: luminosity; 
+    /* --- FIN DE ESTILOS DE IMAGEN --- */
+    
+    color: #ffffff; /* ¡CAMBIADO A BLANCO! */
+    
+    box-shadow: 0 4px #e0e000; 
+    cursor: pointer;
+    font-size: 0.8em; /* ¡AUMENTADO LIGERAMENTE! (Antes 0.7em) */
+    font-weight: bold;
+    transition: all 0.1s ease-out;
+    
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+    text-align: center;
+    line-height: 1.1; 
+    
+    /* Añadimos sombra negra al texto blanco para que destaque sobre la textura */
+    text-shadow: 0 0 3px rgba(0,0,0,0.7); 
+    overflow: visible; 
+}
+
+/* Estilo para el Ícono/Emoji */
+.icono-boton {
+    font-size: 1.8em; 
+    margin-bottom: 2px;
+    line-height: 1; 
+    z-index: 2; 
+    position: relative;
+}
+
+.boton-tab:hover {
+    background-color: #f0f0f0; 
+    background-blend-mode: multiply; 
+}
+
+.boton-tab:active {
+    animation: huella-press 0.1s ease-out forwards;
+}
+
+/* 3. Estilo Activo (Seleccionado) -- ¡VERDE CLARO CON TEXTURA! */
+.boton-tab.activo {
+    background-color: #99ff99; /* VERDE CLARO */
+    background-blend-mode: multiply; 
+    color: #000000; /* Texto Negro para resaltar sobre el verde claro */
+    box-shadow: 0 4px #66cc66; 
+    text-shadow: 0 0 3px rgba(255, 255, 255, 0.4); /* Sombra blanca para texto negro sobre verde */
+}
+
+/* --- Dedos de la Huella (Pseudoelementos) --- */
+
+.boton-tab::before,
+.boton-tab::after {
+    content: '';
+    position: absolute;
+    background-image: inherit; 
+    background-size: cover;
+    background-position: center;
+    background-color: inherit; 
+    background-blend-mode: inherit; 
+    border-radius: 50%; 
+    box-shadow: 0 1px rgba(0, 0, 0, 0.1);
+    z-index: 1; 
+}
+
+/* Dedo Izquierdo */
+.boton-tab::before {
+    width: 25px; height: 25px; 
+    top: -10px; 
+    left: 10px;
+    transform: rotate(-30deg);
+}
+
+/* Dedo Derecho */
+.boton-tab::after {
+    width: 25px; height: 25px; 
+    top: -10px; 
+    right: 10px;
+    transform: rotate(30deg);
+}
+
+/* Dedo Central (usando el pseudo-elemento de span) */
+.boton-tab span.icono-boton::before {
+    content: '';
+    position: absolute; 
+    width: 30px; height: 30px; 
+    background-image: inherit; 
+    background-size: cover;
+    background-position: center;
+    background-color: inherit; 
+    background-blend-mode: inherit; 
+    border-radius: 50%;
+    top: -20px; 
+    left: 50%;
+    transform: translateX(-50%); 
+    box-shadow: 0 1px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+}
+
+
+/* --- Pestañas de Contenido (sin modificar) --- */
+.pestaña {
+    display: none !important;
+    padding: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1); 
+    border-radius: 8px;
+    background-color: rgba(10, 10, 10, 0.5); 
+}
+
+.pestaña.activa {
+    display: block !important; 
+}
+
+
+/* --- AJUSTES RESPONSIVOS --- */
+@media (max-width: 768px) {
+    
+    .main-content {
+        flex-direction: column; 
+        align-items: center; 
+        justify-content: center; 
+    }
+    
+    .columna-gata {
+        width: 100%; 
+    }
+    .gata-img {
+        max-width: 250px; 
+        height: 250px; 
+    }
+
+    .main-content.activo {
+        justify-content: center; 
+    }
+
+    .columna-info {
+        opacity: 0; 
+        width: 100% !important;
+        max-width: 90%; 
+        padding-top: 0 !important;
+        padding-left: 0 !important; 
+        align-items: center; 
+        text-align: center;
+    }
+    
+    .main-content.activo .columna-info {
+        opacity: 1; 
+        padding-top: 20px !important; 
+    }
+
+    .botones-info {
+        justify-content: center; 
+        gap: 15px;
+    }
+    .frase-gata {
+        font-size: 1.2em;
+    }
+
+    /* Ajustar Dedos para Móvil */
+    .boton-tab {
+        width: 80px; 
+        height: 60px;
+        font-size: 0.7em; /* Ajustado en móvil */
+    }
+    .icono-boton {
+        font-size: 1.5em;
+    }
+
+    .boton-tab::before {
+        width: 20px; height: 20px; top: -8px; left: 8px;
+    }
+    .boton-tab::after {
+        width: 20px; height: 20px; top: -8px; right: 8px;
+    }
+    .boton-tab span.icono-boton::before {
+        width: 25px; height: 25px; top: -18px;
+    }
+}
+.boton-donaciones {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 12px 20px;
+    background-color: #ffff00;
+    color: #000;
+    font-weight: bold;
+    border-radius: 10px;
+    text-decoration: none;
+    font-size: 1.1em;
+    box-shadow: 0 0 10px rgba(255,255,0,0.7);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.boton-donaciones:hover {
+    transform: scale(1.07);
+    box-shadow: 0 0 15px rgba(255,255,0,1);
+}
+
+.boton-donaciones:active {
+    transform: scale(0.96);
+}
+
+  
